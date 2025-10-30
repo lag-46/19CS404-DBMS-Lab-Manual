@@ -38,123 +38,385 @@ HAVING condition;
 
 **Question 1**
 --
--- Paste Question 1 here
+How many appointments are scheduled for each patient?
+
+Sample table: Appointments Table
+
+name                  type
+--------------------  ----------
+AppointmentID         INTEGER
+PatientID             INTEGER
+DoctorID              INTEGER
+AppointmentDateTime   DATETIME
+Purpose               TEXT
+Status                TEXT
+For example:
+
+Result
+PatientID   TotalAppointments
+----------  -----------------
+3           3
+5           2
+6           1
+7           1
+10          3
 
 ```sql
--- Paste your SQL code below for Question 1
+SELECT PatientID,
+       COUNT(*) AS TotalAppointments
+FROM Appointments
+GROUP BY PatientID;
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="773" height="651" alt="image" src="https://github.com/user-attachments/assets/e0d66029-354d-4424-98c5-10138ef77c34" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+How many patients have expired insurance coverage for each insurance company?
+
+Sample table:Insurance Table
+
+
+
+For example:
+
+Result
+InsuranceCompany  TotalExpiredPatients
+----------------  --------------------
+ABC Insurance     1
+DEF Insurance     1
+GHI Insurance     1
+JKL Insurance     1
+MNO Insurance     1
+PQR Insurance     1
+STU Insurance     1
+VWX Insurance     1
+XYZ Insurance     1
+YZA Insurance     1
+
 
 ```sql
--- Paste your SQL code below for Question 2
+SELECT InsuranceCompany,
+       COUNT(*) AS TotalExpiredPatients
+FROM Insurance
+GROUP BY InsuranceCompany;
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="873" height="752" alt="image" src="https://github.com/user-attachments/assets/d2352ef5-3cbe-475c-9fa1-714cb2ae7853" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+What is the total number of appointments scheduled for each day?
+
+Table: Appointments
+
+name                 type
+-------------------  ----------
+AppointmentID        INTEGER
+PatientID            INTEGER
+DoctorID             INTEGER
+AppointmentDateTime  DATETIME
+Purpose              TEXT
+Status               TEXT
+ 
+
+For example:
+
+Result
+AppointmentDate  TotalAppointments
+---------------  -----------------
+2024-02-16       4
+2024-02-18       1
+2024-02-20       1
+2024-02-21       1
+2024-02-22       1
+2024-02-23       2
 
 ```sql
--- Paste your SQL code below for Question 3
+SELECT DATE(AppointmentDateTime) AS AppointmentDate,
+       COUNT(*) AS TotalAppointments
+FROM Appointments
+GROUP BY DATE(AppointmentDateTime)
+ORDER BY AppointmentDate;
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="834" height="669" alt="image" src="https://github.com/user-attachments/assets/d3bc0b11-e5f7-4ed4-abe9-cac6ee3fc1c0" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL query to find the number of employees whose age is greater than 32.
+
+Sample table: employee
+
+id
+
+name
+
+age
+
+address
+
+salary
+
+1
+
+Paul
+
+32
+
+California
+
+20000
+
+4
+
+Mark
+
+25
+
+Richtown
+
+65000
+
+5
+
+David
+
+27
+
+Texas
+
+85000
+
+ 
+
+For example:
+
+Result
+COUNT
+----------
+5
+
 
 ```sql
--- Paste your SQL code below for Question 4
+SELECT COUNT(*) AS COUNT
+FROM employee
+WHERE age > 32;
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="727" height="363" alt="image" src="https://github.com/user-attachments/assets/b7fb390b-1f0b-49f8-8cb7-973d331ebe8d" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL query to find  how many employees work in California?
+
+Table: employee
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+age         INTEGER
+city        TEXT
+income      INTEGER
+ 
+
+For example:
+
+Result
+employees_in_california
+-----------------------
+2
+
 
 ```sql
--- Paste your SQL code below for Question 5
+SELECT COUNT(*) AS employees_in_california
+FROM employee
+WHERE city = 'California';
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="726" height="351" alt="image" src="https://github.com/user-attachments/assets/a24a68e6-6f61-43c7-ba54-24d91fcd82e8" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to find the average length of email addresses (in characters):
+
+Table: customer
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+city        TEXT
+email       TEXT
+phone       INTEGER
+For example:
+
+Result
+avg_email_length
+----------------
+15.0
 
 ```sql
--- Paste your SQL code below for Question 6
+SELECT AVG(LENGTH(email)) AS avg_email_length
+FROM customer;
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="795" height="364" alt="image" src="https://github.com/user-attachments/assets/f7d4690c-e54a-4a5b-b98b-ddd570c36a2f" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to find the total amount of fruits with a unit type of 'LB'.
+
+Note: Inventory attribute contains amount of fruits
+
+Table: fruits
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+unit        TEXT
+inventory   INTEGER
+price       REAL
+ 
+
+For example:
+
+Result
+total
+----------
+225
+
 
 ```sql
--- Paste your SQL code below for Question 7
+SELECT SUM(inventory) AS total
+FROM fruits
+WHERE unit = 'LB';
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="764" height="362" alt="image" src="https://github.com/user-attachments/assets/56f57bb4-192b-41cf-9e36-9bef65ced457" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write the SQL query that accomplishes the selection of number of products for each category from products table which includes only those products where the category ID is greater than 2.
+
+Sample table: products
+
+
+
+For example:
+
+Result
+category_id  COUNT
+-----------  ----------
+3            3
+
 
 ```sql
--- Paste your SQL code below for Question 8
+SELECT category_id,
+       COUNT(*) AS COUNT
+FROM products
+WHERE category_id > 2
+GROUP BY category_id;
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="781" height="384" alt="image" src="https://github.com/user-attachments/assets/90cc8b3d-34e0-486e-87dd-0e2b09676b7e" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Which cities (addresses) in the "customer1" table have an average salary lesser than Rs. 15000
+
+Sample table: customer1
+
+
+
+For example:
+
+Result
+address     AVG(salary)
+----------  -----------
+Ahmedabad   2000.0
+Bhopal      8500.0
+Delhi       1500.0
+Hyderabad   4500.0
+Indore      10000.0
+Kota        2000.0
+Mumbai      6500.0
+
 
 ```sql
--- Paste your SQL code below for Question 9
+SELECT address,
+       AVG(salary) AS "AVG(salary)"
+FROM customer1
+GROUP BY address
+HAVING AVG(salary) < 15000;
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="776" height="626" alt="image" src="https://github.com/user-attachments/assets/472214ee-c636-4d24-9ae3-493faa2a1221" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write the SQL query that achieves the selection of product names and the maximum price for each category from the "products" table, and includes only those products where the maximum price is greater than 15.
+
+Sample table: products
+
+
+
+For example:
+
+Result
+category_id  product_name  Price
+-----------  ------------  ----------
+1            Orange        15.5
+2            Monitor       25
+
 
 ```sql
--- Paste your SQL code below for Question 10
+SELECT p.category_id,
+       p.product_name,
+       p.price AS Price
+FROM products p
+JOIN (
+    SELECT category_id,
+           MAX(price) AS max_price
+    FROM products
+    GROUP BY category_id
+) mp ON p.category_id = mp.category_id AND p.price = mp.max_price
+WHERE p.price > 15;
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="969" height="432" alt="image" src="https://github.com/user-attachments/assets/1100f7fc-a6af-4223-84ea-5942b577b5ce" />
+
 
 
 ## RESULT
